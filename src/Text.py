@@ -1,4 +1,4 @@
-from PartOfMessage import PartOfMessage
+from src.PartOfMessage import PartOfMessage
 
 
 class Text(PartOfMessage):

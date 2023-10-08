@@ -1,6 +1,6 @@
 from datetime import datetime
-from Text import Text
-from Attachment import Attachment
+from src.Text import Text
+from src.Attachment import Attachment
 
 
 class Message:
@@ -13,6 +13,9 @@ class Message:
         # self.attachments = getAttachment(rawStrAttachments)
         # A implémenter
         # self.author = author(strAuthorName)
+
+    def __str__(self):
+        return self.text.rawstring
 
     def getAttachment(self, rawString):
         result = []

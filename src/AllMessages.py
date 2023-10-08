@@ -1,6 +1,7 @@
 from os import path
-import message
+from src.Message import Message
 from random import randint
+from csv import reader
 
 
 class AllMessages:
@@ -13,11 +14,10 @@ class AllMessages:
     def getAllMessagesFromCSV(self, listMember):
         listMessages = []
         for member in self.listMember:
-            csvPath = path.join("data", "csv", member)
+            csvPath = path.join(".", "data", "csv", member) + ".csv"
             with open(csvPath, "r", encoding="utf-8") as csvfile:
-                reader = reader(csvfile)
-                next(reader)
-                for row in reader:
-                    message(row,member)
-        # À fixer, car ce ne sera pas une liste, mais une liste d'ojet
-        return sorted(listMessages, key=lambda x: x[0])
+                _reader = reader(csvfile)
+                next(_reader)
+                for row in _reader:
+                    listMessages.append(Message(row, member))
+        return sorted(listMessages, key=lambda x: x.id)
