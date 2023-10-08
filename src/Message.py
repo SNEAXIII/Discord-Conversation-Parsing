@@ -1,6 +1,7 @@
 from datetime import datetime
 from src.Text import Text
 from src.Attachment import Attachment
+from src.Author import Author
 
 
 class Message:
@@ -10,13 +11,13 @@ class Message:
         self.dateTime = datetime.fromisoformat(rawStrTimestamp)
         self.text = Text(rawStrMessage)
         self.attachments = self.getAttachments(rawStrAttachments)
-        # A implémenter
-        # self.author = author(strAuthorName)
+        self.author = Author(strAuthorName)
 
     def __str__(self):
+        result = self.author.name
         if self.isHaveText():
-            return self.text.rawString
-        return "C'est vide"
+            return f"{result} --> {self.text.rawString}"
+        return f"{result} --> C'est vide"
 
     def getAttachments(self, rawString):
         result = []
