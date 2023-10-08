@@ -10,7 +10,7 @@ getSequenceXConsecutiveMessage(int) : image
 
 class message {
 int id
-dateTime timeStamp
+dateTime dateTime
 show()
 }
 

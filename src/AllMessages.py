@@ -18,6 +18,6 @@ class AllMessages:
                 reader = reader(csvfile)
                 next(reader)
                 for row in reader:
-                    message(row)
+                    message(row,member)
         # À fixer, car ce ne sera pas une liste, mais une liste d'ojet
         return sorted(listMessages, key=lambda x: x[0])
