@@ -6,7 +6,7 @@ class Text(PartOfMessage):
         super().__init__(rawString)
 
     def isEmpty(self):
-        return bool(self.rawString.strip())
+        return not bool(self.rawString.strip())
 
 
     def show(self):
