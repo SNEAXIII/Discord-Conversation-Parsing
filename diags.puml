@@ -1,0 +1,42 @@
+@startuml
+
+class allMessages {
+array listMessages
+array listMember[string]
+getAllMessageFromCsv(string url)
+countExpression(string, array/string author = all, ?dateTime = null) : int
+getSequenceXConsecutiveMessage(int) : image
+}
+
+class message {
+int id
+dateTime timeStamp
+show()
+}
+
+abstract class partOfMessage {
+string rawString
+image content
+abstract show(string)
+}
+
+class attachement {
+}
+
+class text {
+}
+
+class author {
+string name
+image profilePicture
+}
+
+
+allMessages "0..*"<-- message : store <
+message "0..*"<-- attachement : store <
+message "1..1"<-- text : store <
+message "1..1"<-- author : write <
+partOfMessage <|-- attachement
+partOfMessage <|-- text
+
+@enduml
