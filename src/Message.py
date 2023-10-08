@@ -9,15 +9,16 @@ class Message:
         self.id = int(_id)
         self.dateTime = datetime.fromisoformat(rawStrTimestamp)
         self.text = Text(rawStrMessage)
-        # A implémenter
-        # self.attachments = getAttachment(rawStrAttachments)
+        self.attachments = self.getAttachments(rawStrAttachments)
         # A implémenter
         # self.author = author(strAuthorName)
 
     def __str__(self):
-        return self.text.rawstring
+        if self.isHaveText():
+            return self.text.rawString
+        return "C'est vide"
 
-    def getAttachment(self, rawString):
+    def getAttachments(self, rawString):
         result = []
         if rawString:
             listAttachments = rawString.split(" ")
