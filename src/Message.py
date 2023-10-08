@@ -1,4 +1,6 @@
 from datetime import datetime
+from Text import Text
+from Attachment import Attachment
 
 
 class Message:
@@ -6,9 +8,26 @@ class Message:
         _id, rawStrTimestamp, rawStrMessage, rawStrAttachments = listRawContent
         self.id = int(_id)
         self.dateTime = datetime.fromisoformat(rawStrTimestamp)
+        self.text = Text(rawStrMessage)
         # A implémenter
-        # self.text = text(rawStrMessage)
-        # A implémenter
-        # self.attachement = attachement(rawStrAttachments)
+        # self.attachments = getAttachment(rawStrAttachments)
         # A implémenter
         # self.author = author(strAuthorName)
+
+    def getAttachment(self, rawString):
+        result = []
+        if rawString:
+            listAttachments = rawString.split(" ")
+            for attachmentUrl in listAttachments:
+                result.append(Attachment(attachmentUrl))
+        return result
+
+    def isHaveText(self):
+        return bool(not self.text.isEmpty())
+
+    def isHaveAttachment(self):
+        return bool(self.attachments)
+
+    # TODO
+    def show(self):
+        pass
