@@ -5,13 +5,13 @@ from src.Author import Author
 
 
 class Message:
-    def __init__(self, listRawContent, strAuthorName):
+    def __init__(self, listRawContent, author):
         _id, rawStrTimestamp, rawStrMessage, rawStrAttachments = listRawContent
         self.id = int(_id)
         self.dateTime = datetime.fromisoformat(rawStrTimestamp)
         self.text = Text(rawStrMessage)
         self.attachments = self.getAttachments(rawStrAttachments)
-        self.author = Author(strAuthorName)
+        self.author = author
 
     def __str__(self):
         result = self.author.name
