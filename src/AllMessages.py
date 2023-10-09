@@ -25,4 +25,7 @@ class AllMessages:
                 next(_reader)
                 for row in _reader:
                     listMessages.append(Message(row, member))
+        return self.sortMessagesByDate(listMessages)
+
+    def sortMessagesByDate(self,listMessages):
         return sorted(listMessages, key=lambda x: x.id)
