@@ -39,6 +39,7 @@ allMessages "0..*"<-- message : store <
 message "0..*"<-- attachement : store <
 message "1..1"<-- text : store <
 message "1..1"<-- author : write <
+allMessages "1..*"<-- author : store <
 partOfMessage <|-- attachement
 partOfMessage <|-- text
 
