@@ -32,6 +32,7 @@ isEmpty(): bool
 class author {
 string name
 image profilePicture
+show():image
 }
 
 
