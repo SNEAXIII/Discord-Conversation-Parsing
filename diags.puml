@@ -35,6 +35,9 @@ image profilePicture
 show():image
 }
 
+class imageBuilder {
+
+}
 
 allMessages "0..*"<-- message : store <
 message "0..*"<-- attachement : store <
