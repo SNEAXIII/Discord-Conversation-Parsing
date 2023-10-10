@@ -23,6 +23,9 @@ draw.text((x2, y2), text2, font=font3, fill=gray)
 
 image.putpixel((x, y), red)
 
+# petit = +4 10
+# grand = +2 12
+
 x = 50
 y = 80
 text = "du coup tu m'envoies les panorama?\ntest saut de ligne"
