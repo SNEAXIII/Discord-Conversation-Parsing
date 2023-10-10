@@ -17,7 +17,7 @@ class Message:
         result = self.author.name
         if self.isHaveText():
             return f"{result} --> {self.text.rawString}"
-        return f"{result} --> C'est vide"
+        return f"{result} {self.dateToString()} --> C'est vide"
 
     def getAttachments(self, rawString):
         result = []
@@ -32,6 +32,10 @@ class Message:
 
     def isHaveAttachment(self):
         return bool(self.attachments)
+
+    def dateToString(self):
+        return self.dateTime.strftime("%d/%m/%Y %H:%M")
+
 
     # TODO
     def show(self):
