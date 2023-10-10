@@ -27,5 +27,6 @@ class AllMessages:
                     listMessages.append(Message(row, member))
         return self.sortMessagesByDate(listMessages)
 
-    def sortMessagesByDate(self,listMessages):
+    @staticmethod
+    def sortMessagesByDate(listMessages):
         return sorted(listMessages, key=lambda x: x.id)
