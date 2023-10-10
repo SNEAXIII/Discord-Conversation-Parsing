@@ -14,12 +14,13 @@ class Message:
         self.author = author
 
     def __str__(self):
-        result = self.author.name
+        result = " ".join([self.author.name, self.dateToString(), "-->"])
         if self.isHaveText():
-            return f"{result} --> {self.text.rawString}"
-        return f"{result} {self.dateToString()} --> C'est vide"
+            return " ".join([result,self.text.rawString])
+        return " ".join([result, "C'est vide"])
 
-    def getAttachments(self, rawString):
+    @staticmethod
+    def getAttachments(rawString):
         result = []
         if rawString:
             listAttachments = rawString.split(" ")
@@ -35,7 +36,6 @@ class Message:
 
     def dateToString(self):
         return self.dateTime.strftime("%d/%m/%Y %H:%M")
-
 
     # TODO
     def show(self):
