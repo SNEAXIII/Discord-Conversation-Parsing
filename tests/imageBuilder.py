@@ -1,33 +1,25 @@
 from PIL import Image, ImageDraw, ImageFont
-
 image = Image.new("RGB", (400, 200), (49, 51, 56))
 dessinImage = ImageDraw.Draw(image)
-font1 = ImageFont.truetype("../font/ggsans-Bold.ttf", 14)
-font2 = ImageFont.truetype("../font/ggsans-Medium.ttf", 14)
-font3 = ImageFont.truetype("../font/ggsans-Medium.ttf", 12)
+font1 = ImageFont.truetype("../src/font/ggsans-Bold.ttf", 14)
+font2 = ImageFont.truetype("../src/font/ggsans-Medium.ttf", 14)
+font3 = ImageFont.truetype("../src/font/ggsans-Medium.ttf", 12)
 red = (255, 0, 0)  # Rouge
 
-imageLink = "../data/pp/MisterBalise.webp"
-taillephotoProfil = 35
-rayon = taillephotoProfil // 2
+imageLink = "../data/pp/MisterBalise.png"
+taillePP = 35
+tupleEllipseDimension = (0, 0, taillePP - 1, taillePP - 1)
 
-photoProfil = Image.open(imageLink).resize((taillephotoProfil,taillephotoProfil))
+PP = Image.open(imageLink).resize((taillePP, taillePP))
 
-tupleTaillephotoProfil = photoProfil.size
+masqueEllipse = Image.new("L", PP.size)
 
-masque = Image.new("RGBA", tupleTaillephotoProfil, (0, 0, 0, 0))
-dessinMasque = ImageDraw.Draw(masque)
-centre = (rayon, rayon)
-dessinMasque.ellipse((0,0,taillephotoProfil,taillephotoProfil), fill=(0, 0, 0, 255))
-ppCercle = Image.new("RGBA", tupleTaillephotoProfil)
-masque.show()
-masque.putalpha(0)
-ppCercle.paste(photoProfil, mask=masque)
+ImageDraw.Draw(masqueEllipse).ellipse(tupleEllipseDimension, fill=255)
 
-image.paste(ppCercle, (0, 0))
+image.paste(PP, (20, 20), mask=masqueEllipse)
 
-x = 50
-y = 60
+x = 60
+y = 20
 author = "MisterBalise"
 dessinImage.text((x, y), author, font=font1, fill="white")
 
@@ -36,7 +28,7 @@ print(bbox)
 x2 = bbox[2] + x + 10
 y2 = y + 2
 gray = (174, 174, 174)
-date = "01/06/2019 13:15"
+date = "Aujourd’hui à 02:15"
 dessinImage.text((x2, y2), date, font=font3, fill=gray)
 
 image.putpixel((x, y), red)
@@ -44,10 +36,10 @@ image.putpixel((x, y), red)
 # petit = +4 10
 # grand = +2 12
 
-x = 50
-y = 80
-text = "message de test"
-dessinImage.text((x, y), text, font=font2, fill="white", spacing=8)
+x = 60
+y = 50
+text = "message de test8"
+dessinImage.text((x, y), text, font=font2, fill="white")
 
 image.putpixel((x, y), red)
 
