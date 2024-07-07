@@ -16,7 +16,7 @@ class AllMessages:
             listAuthor.append(Author(member))
         return listAuthor
 
-    def getAllMessagesFromCSV(self, listMember):
+    def getAllMessagesFromCSV(self):
         listMessages = []
         for member in self.listAuthor:
             csvPath = path.join(".", "data", "csv", member.name) + ".csv"
