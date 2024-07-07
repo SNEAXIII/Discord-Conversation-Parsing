@@ -1,16 +1,16 @@
-from os import path
-from src.Message import Message
-from random import randint
 from csv import reader
+from os import path
+
 from src.Author import Author
+from src.Message import Message
 
 
 class AllMessages:
     def __init__(self, listMember):
         self.listAuthor = self.getAllAuthors(listMember)
-        self.listMessages = self.getAllMessagesFromCSV(self.listAuthor)
+        self.listMessages = self.getAllMessagesFromCSV()
 
-    def getAllAuthors(self, listMember):
+    def getAllAuthors(self, listMember: list) -> list:
         listAuthor = []
         for member in listMember:
             listAuthor.append(Author(member))
@@ -28,5 +28,5 @@ class AllMessages:
         return self.sortMessagesByDate(listMessages)
 
     @staticmethod
-    def sortMessagesByDate(listMessages):
+    def sortMessagesByDate(listMessages: list) -> list:
         return sorted(listMessages, key=lambda x: x.id)
