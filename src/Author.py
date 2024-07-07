@@ -8,6 +8,7 @@ class Author:
         # TODO impelementer les images de pp au bon format
         _path = path.join("data", "pp", self.name)+".webp"
         self.profilePicture = Image.open(f"{_path}")
+        xBase = 20
 
     def __eq__(self, other):
         return self.name == other
