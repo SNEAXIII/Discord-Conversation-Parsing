@@ -2,4 +2,4 @@ package
 data/csv
 .idea
 data/echantillon/
-tests/image_text.png
+image_text.png
