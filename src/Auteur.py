@@ -9,7 +9,6 @@ class Auteur:
         self.masqueEllipse = None
         self.nom = rawString
         self.taillePP = 35
-        self.xDate = None
         self.load()
 
     def load(self) -> None:
@@ -22,9 +21,6 @@ class Auteur:
         self.masqueEllipse = Image.new("L", self.PP.size)
 
         ImageDraw.Draw(self.masqueEllipse).ellipse(dimensionEllipse, fill=255)
-
-    def setXDate(self, x: int) -> None:
-        self.xDate = x
 
     def __eq__(self, other):
         return self.nom == other
