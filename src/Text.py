@@ -1,13 +1,15 @@
-from src.PartOfMessage import PartOfMessage
+from src.ElementMessage import ElementMessage
 
 
-class Text(PartOfMessage):
+class Text(ElementMessage):
     def __init__(self, rawString):
         super().__init__(rawString)
 
     def isEmpty(self):
         return not bool(self.rawString.strip())
 
+    def __str__(self):
+        return self.rawString
 
     def show(self):
-        print("Implémentation de la méthode abstraite")
+        return self.__str__()

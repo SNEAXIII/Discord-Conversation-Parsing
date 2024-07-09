@@ -1,6 +1,6 @@
 from PIL import ImageFont
 
-import Couleur
+from src import Couleur
 
 
 class FontImportError(Exception): pass
