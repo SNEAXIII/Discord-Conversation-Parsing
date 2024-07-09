@@ -1,12 +1,13 @@
 from src.AllMessages import AllMessages
 from src.ImageBuilder import ImageBuilder
 
-test = AllMessages(["MisterBalise", "Gibus"])
-a = test.parseMessage(test.listMessages[0:5])
-for elem in a:
-    print(elem)
-# for elem in test.listMessages[0:5]:
-#     print(elem)
+allMessages = AllMessages(["MisterBalise", "Gibus"])
+messages = allMessages.parseMessage(allMessages.listMessages[0:5])
+auteurs = allMessages.listAuteur
+
+for message in messages:
+    print(message)
+
 builder = ImageBuilder()
-builder.build(a)
+builder.build(messages)
 a = 0
