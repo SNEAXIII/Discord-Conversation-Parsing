@@ -6,6 +6,7 @@ from src.Styles import Styles
 # tra = translate
 
 styles = Styles()
+taillePP = 35
 yDebut = 20
 mar_top_PP = 10
 pad_top_PP = 5
@@ -15,3 +16,4 @@ mag_top_end = yDebut
 tra_top_date = 2
 x_base_PP = 20
 x_after_PP = 68
+multiLineSpacing = 10

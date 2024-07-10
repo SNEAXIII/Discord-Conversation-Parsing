@@ -11,12 +11,12 @@ class ImageBuilder:
         self.image = None
         self.calculateurCoordonee = ImageDraw.Draw(Image.new("RGB", (1, 1)))
 
-    def build(self, listeMessage: list[Message]):
+    def build(self, messages: list[Message]):
         yActuel = yDebut
         xMax = 0
 
         # On va calculer les coordonnées en ordonnée de l'emplacement des messages un par un
-        for message in listeMessage:
+        for message in messages:
             message.setY(yActuel)
             coordonneeBoiteTexte = self.calculateurCoordonee.textbbox(
                 (0, 0),
@@ -29,12 +29,12 @@ class ImageBuilder:
         # On construit l'image avec les bonnes dimensions
         xImage = xMax + x_after_PP
         yImage = yActuel + mag_top_end
-        
+
         self.image = Image.new("RGB", (xImage, yImage), Couleur.FOND)
         self.dessinImage = ImageDraw.Draw(self.image)
 
         # On parcourt tous les messages et on les ajoute à l'image finale
-        for message in listeMessage:
+        for message in messages:
             self.colleMessage(message)
 
         # On affiche le résultat final
@@ -64,5 +64,5 @@ class ImageBuilder:
             (x_after_PP, message.y + mar_top_p),
             message.text.show(),
             **styles.get("message", "text"),
-            spacing=10
+            spacing=multiLineSpacing
         )

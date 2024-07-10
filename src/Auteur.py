@@ -2,24 +2,23 @@ from os import path
 
 from PIL import Image, ImageDraw
 
-from src.Constants import *
+from src.Constants import taillePP, mar_left_date, styles, x_after_PP
 
 
 class Auteur:
-    def __init__(self, rawString: str):
+    def __init__(self, nom: str):
         self.xDate = None
         self.PP = None
         self.masqueEllipse = None
-        self.nom = rawString
-        self.taillePP = 35
+        self.nom = nom
         self.load()
 
     def load(self) -> None:
         cheminFichier = path.join("data", "pp", self.nom) + ".png"
 
-        dimensionEllipse = (0, 0, self.taillePP - 1, self.taillePP - 1)
+        dimensionEllipse = (0, 0, taillePP - 1, taillePP - 1)
 
-        self.PP = Image.open(cheminFichier).resize((self.taillePP, self.taillePP))
+        self.PP = Image.open(cheminFichier).resize((taillePP, taillePP))
 
         self.masqueEllipse = Image.new("L", self.PP.size)
 
