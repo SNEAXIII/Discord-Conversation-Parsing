@@ -1,10 +1,8 @@
 from PIL import Image
 from PIL import ImageDraw
 
-from src import Message, Couleur, Auteur
+from src import Message, Couleur
 from src.Constants import *
-from src.Styles import Styles
-
 
 
 class ImageBuilder:
@@ -12,10 +10,6 @@ class ImageBuilder:
         self.dessinImage = None
         self.image = None
         self.calculateurCoordonee = ImageDraw.Draw(Image.new("RGB", (1, 1)))
-
-    def calculerDimensionImage(self):
-        # todo a faire
-        pass
 
     def build(self, listeMessage: list[Message]):
         yActuel = yDebut
@@ -31,12 +25,12 @@ class ImageBuilder:
             )
             xMax = max(xMax, coordonneeBoiteTexte[2])
             yActuel += mar_top_PP + mar_top_p + coordonneeBoiteTexte[3]
-        xMax += x_after_PP
-        yActuel += mag_top_end
 
         # On construit l'image avec les bonnes dimensions
-        # todo verifier que la marge du x soit pas trop élevée
-        self.image = Image.new("RGB", (xMax, yActuel), Couleur.FOND)
+        xImage = xMax + x_after_PP
+        yImage = yActuel + mag_top_end
+        
+        self.image = Image.new("RGB", (xImage, yImage), Couleur.FOND)
         self.dessinImage = ImageDraw.Draw(self.image)
 
         # On parcourt tous les messages et on les ajoute à l'image finale
