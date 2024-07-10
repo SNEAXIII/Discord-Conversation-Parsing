@@ -6,7 +6,10 @@ from src.Message import Message
 
 
 class AllMessages:
-    def __init__(self, members:list[str]):
+    listAuteur: list[Auteur]
+    messages: list[Message]
+
+    def __init__(self, members: list[str]):
         self.messages = None
         self.listAuteur = self.getAllAuteurs(members)
         self.reset()
@@ -17,7 +20,7 @@ class AllMessages:
             listAuteur.append(Auteur(member))
         return listAuteur
 
-    def getAllMessagesFromCSV(self)->list[Message]:
+    def getAllMessagesFromCSV(self) -> list[Message]:
         messages = []
         for member in self.listAuteur:
             csvPath = path.join(".", "data", "csv", member.nom) + ".csv"
@@ -41,9 +44,27 @@ class AllMessages:
             # todo ajouter les wrap des mots
         return nouvelleListe
 
+    def getIdMessagesQuiContiennentTexte(self, echantillons: list[str]) -> list[int]:
+        return [idMessage for idMessage, message in enumerate(self.messages) if message.siContient(echantillons)]
+
+    def getMessagesParId(self, ids: list[int]) -> list[Message]:
+        return [self.messages[idMessage] for idMessage in ids]
+
+    def afficheMessagesQuiContiennentTexte(self, echantillons: list[str], marge: int = 0) -> None:
+        idsSelectionnes = self.getIdMessagesQuiContiennentTexte(echantillons)
+        nombreMessages = len(self.messages)
+        for numeroPartie, idSelectionne in enumerate(idsSelectionnes):
+            valeurMini = max(0, idSelectionne - marge)
+            valeurMaxi = min(idSelectionne + marge, nombreMessages)
+            messagesAParcourir = self.messages[valeurMini:valeurMaxi + 1]
+            print(f"Partie de message numéro {numeroPartie + 1}:\n")
+            for idMessageParcourus,message in enumerate(messagesAParcourir):
+                print(f"Message numéro {idMessageParcourus + valeurMini} --> {message}")
+            print()
+
     @staticmethod
     def sortMessagesByDate(messages: list[Message]) -> list[Message]:
         return sorted(messages, key=lambda x: x.id)
 
-    def reset(self):
+    def reset(self) -> None:
         self.messages = self.getAllMessagesFromCSV()
