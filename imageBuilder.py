@@ -31,9 +31,9 @@ date = "Aujourd’hui à 20:12"
 dessinImage.text((bbox[2] + 10, y + 2), date, **styles.get("date", "text"))
 
 y += 22
-text = "Je me fais gueuler dessusparce que\n j'ai pas\n obéi😤"
+text = "Petite question\nPourrais tu m'aider à prendre les mamukils?\nQuand on sera + fort avec des lvl 45"
 dessinImage.text((x, y), text, **styles.get("message", "text"),spacing=10)
-bbbb = dessinImage.textbbox((x, y), text, **styles.get("message", "textbox"),spacing=10)
+bbbb = dessinImage.textbbox((0, 0), text, **styles.get("message", "textbox"),spacing=10)
 dessinImage.rectangle(bbbb, outline="#0000ff")
 
 y = bbbb[3] + 10
